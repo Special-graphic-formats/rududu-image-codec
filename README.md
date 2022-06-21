@@ -1,3 +1,9 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Special-graphic-formats/rududu-image-codec)
+![GitHub Release Date](https://img.shields.io/github/release-date/Special-graphic-formats/rududu-image-codec)
+![GitHub repo size](https://img.shields.io/github/repo-size/Special-graphic-formats/rududu-image-codec)
+![GitHub all releases](https://img.shields.io/github/downloads/Special-graphic-formats/rududu-image-codec/total)
+![GitHub](https://img.shields.io/github/license/Special-graphic-formats/rududu-image-codec)
+
 # RIC (Rududu Image Codec)
 [based CImg.h]
 
@@ -23,7 +29,7 @@
 
 ```bash
 cd src
-autoreconf -fiv
+./autoconfig.sh
 ./configure --prefix=/usr
 make
 sudo make install

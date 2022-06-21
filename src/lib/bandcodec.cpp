@@ -73,7 +73,7 @@ template <cmode mode, class C>
 	else
 		pCur[0] = u2s(pCodec->tabooDecode());
 
-	for( unsigned int i = 1; i < DimX; i++){
+	for( int i = 1; i < DimX; i++){
 		if (mode == encode)
 			geoCodec.code(s2u(pCur[i] - pCur[i - 1]), 15);
 		else
@@ -81,13 +81,13 @@ template <cmode mode, class C>
 	}
 	pCur += stride;
 
-	for( unsigned int j = 1; j < DimY; j++){
+	for( int j = 1; j < DimY; j++){
 		if (mode == encode)
 			geoCodec.code(s2u(pCur[0] - pCur[-stride]), 15);
 		else
 			pCur[0] = pCur[-stride] + u2s(geoCodec.decode(15));
 
-		for( unsigned int i = 1; i < DimX; i++){
+		for( int i = 1; i < DimX; i++){
 			int var = ABS(pCur[i - 1] - pCur[i - 1 - stride]) +
 					ABS(pCur[i - stride] - pCur[i - 1 - stride]);
 			var = bitlen(var);
@@ -531,7 +531,7 @@ template <cmode mode, bool high_band, class C, class P>
 				continue;
 			}
 
-			if (pPar) ctx = maxLen<BLK_SIZE >> 1, mode>(&pPar[k], pParent->DimXAlign);
+			if (pPar) ctx = maxLen<(BLK_SIZE >> 1), mode>(&pPar[k], pParent->DimXAlign);
 			if ((mode == encode && treeCodec.code(pCur1[i] == INSIGNIF_BLOCK, ctx)) || (mode == decode && treeCodec.decode(ctx))) {
 				pCur1[i] = pCur1[i + (BLK_SIZE >> 1)] = pCur2[i] = pCur2[i + (BLK_SIZE >> 1)] = -(pChild != 0) & INSIGNIF_BLOCK;
 			} else {
